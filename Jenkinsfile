@@ -1,8 +1,6 @@
 pipeline {
     agent any
-    tools {
-        maven 'Maven363'
-    }
+
     options {
         timeout(10)
         buildDiscarder logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '5', numToKeepStr: '5')
@@ -10,7 +8,8 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh "mvn clean install"
+                bat 'C:/Build/apache-maven-3.9.8/bin/mvn clean'
+
             }
         }
         stage('upload artifact to nexus') {
